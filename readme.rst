@@ -11,14 +11,69 @@ By: Grant Slape
 
 The ARMSim has been designed in the following manner:
 
+Design Document: Functional Simulator for Subset of ARM instruction set
+-----------------------------------------------------------------------
+
+The document describes the design aspect of myARMSim, a functional simulator for subset of ARM instruction set.
+
+Input
+~~~~~
+
+Input to the simulator is MEM file that contains the encoded instruction and the corresponding address at which instruction is supposed to be stored, separated by space.   For example:
+
+- 0x0 0xE3A0200A
+- 0x4 0xE3A03002
+- 0x8 0xE0821003
+
+Functional Behavior and output
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The simulator reads the instruction from instruction memory, decodes the instruction, read the register, execute the operation, and write back to the register file. The instruction set supported is same as given in the lecture notes. 
+The execution of instruction continues till it reaches instruction “swi 0x11”. In other words as soon as instruction reads “0xEF000011”, simulator stops and writes the updated memory contents on to a memory text file. 
+The simulator also prints messages for each stage, for example for the third instruction above following messages are printed:
+
+1.	Fetch prints:
+	- “FETCH:Fetch instruction 0xE3A0200A from address 0x0” 
+2.	Decode
+	- “DECODE: Operation is ADD, first operand R2, Second operand R3, destination register R1”
+	- “DECODE:  Read registers R2 = 10, R3 = 2”
+3.	Execute
+	- “EXECUTE: ADD 10 and 2”
+4.	Memory
+	-	“MEMORY:No memory  operation”
+5.	Writeback
+	- “WRITEBACK: write 12 to R1”
+
+Design of Simulator
+-------------------
+
+Data structure
+~~~~~~~~~~~~~~
+
+Registers, memories, intermediate output for each stage of instruction execution are declared as global static. Being static, the variables are not visible outside the file, thus, make the data encapsulated in the myARMSim.cpp.
+
+Simulator flow:
+~~~~~~~~~~~~~~~
+
+1.	First memory is loaded with input memory file.
+2.	Simulator executes instruction one by one.
+	- For the second step, there is infinite loop, which simulates all the instruction till the instruction sequence reads “SWI 0x11”.
+
+Test plan:
+~~~~~~~~~~
+
+We test the simulator with following assembly programs:
+-	Fibonacci Program
+-	Sum of the array of N elements. Initialize an array in first loop with each element equal to its index. In second loop find the sum of this array, and store the result at Arr[N].   
+
+Data Processing Instructions Implemented:
+-----------------------------------------
+
 +--------+--------+-------+--------+-------+--------+--------+----------+
 | Cond   | F      | I     | Opcode | S     | Rn     | Rd     | Operand2 |
 +========+========+=======+========+=======+========+========+==========+
 | 4 bits | 2 bits | 1 bit | 4 bits | 1 bit | 4 bits | 4 bits | 12 bits  |
 +--------+--------+-------+--------+-------+--------+--------+----------+
-
-Data Processing Instructions Implemented:
------------------------------------------
 
 -	ADD Rd, Rn, Rm | ADD Rd, Rn, #imm
 -	SUB Rd, Rn, Rm | SUB Rd, Rn, #imm
