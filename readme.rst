@@ -78,13 +78,13 @@ Data Processing Instructions Implemented:
 -	ADD Rd, Rn, Rm | ADD Rd, Rn, #imm
 -	SUB Rd, Rn, Rm | SUB Rd, Rn, #imm
 -	ADD Rd, Rn, Rm | ADD Rd, Rn, #imm 
--	 SUB Rd, Rn, Rm | SUB Rd, Rn, #imm 
--	 AND Rd, Rn, Rm | AND Rd, Rn, #imm 
--	 ORR Rd, Rn, Rm | ORR Rd, Rn, #imm 
--	 ADC Rd, Rn, Rm | ORR Rd, Rn, #imm 
+-	SUB Rd, Rn, Rm | SUB Rd, Rn, #imm 
+-	AND Rd, Rn, Rm | AND Rd, Rn, #imm 
+-	ORR Rd, Rn, Rm | ORR Rd, Rn, #imm 
+-	ADC Rd, Rn, Rm | ORR Rd, Rn, #imm 
 -	CMP Rn, Rm | CMP Rn, #imm 
--	 MOV Rd, Rm | MOV Rd, #imm 
--	 MNV Rd, Rm | MNV RD, #imm
+-	MOV Rd, Rm | MOV Rd, #imm 
+-	MNV Rd, Rm | MNV RD, #imm
 
 +--------+--------+--------+-------+--------+----------+
 | Cond   | F      | Opcode | Rn    | Rd     | Offset12 |
