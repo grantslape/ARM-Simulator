@@ -46,6 +46,6 @@ This program came with some example code for testing the simulator.  quoting the
 Miscellanous
 ~~~~~~~~~~~~
 
-The original documentation for this project can be found in the /doc/ directory, in .docx format.  I've converted it to RST and renamed it reADME.rst.
+The original documentation for this project can be found in the /doc/ directory, in .docx format.  I've converted it to RST and renamed it readme.rst.
 The documentation assists in understanding the ISA for this processor, and how the decode step works.
 There is also a good explanation for how branch addresses are calculated.
